@@ -1,0 +1,109 @@
+﻿
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mini Quizlet</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/lib/fontawesome-free-6.5.2-web/css/all.css" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      
+    </style>
+    <script>
+        var msg = '@TempData["Msg"]';
+        if (msg.length) {
+            alert(msg);
+        }
+    </script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy/mm/dd'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            
+            $('.form-check-input[name="gender"]').change(function () {
+                
+                var selectedValue = $(this).val();
+                
+                $('#genderPost').val(selectedValue);
+               
+            });
+
+            $("#repassword").keyup(function () {
+                var newPassword = $("#password").val();
+                var retypedPassword = $(this).val();
+               
+                if (newPassword !== retypedPassword) {
+                    $("#exampleInputPassword1-error").show();
+                    $("#exampleInputPassword1-success").hide();
+                } else {
+                    $("#exampleInputPassword1-error").hide();
+                    $("#exampleInputPassword1-success").show();
+                }
+            });
+
+        });
+    </script>
+  </head>
+  <body>
+    
+<header>
+        <div class="collapse bg-info bg-gradient" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="https://www.facebook.com/mynameisthai1/" class="text-white">Facebook</a></li>
+            <li><a href="https://github.com/quocthai0404" class="text-white">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="navbar navbar-dark bg-info bg-gradient shadow-sm">
+    <div class="container">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <strong>Mini Quizlet</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+        @RenderBody()
+</main>
+    
+
+    <script src="~/lib/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
+      
+  </body>
+</html>

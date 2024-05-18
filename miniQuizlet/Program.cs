@@ -16,6 +16,7 @@ builder.Services.AddDbContext<DatabaseContext>(option => {
 //
 //khai bao service duoi ket noi db
 builder.Services.AddScoped<IAccountService, AccountServiceImpl>();
+builder.Services.AddScoped<IMailService, MailServiceImpl>();
 //
 
 //cau hinh security

@@ -15,6 +15,8 @@ public partial class DatabaseContext : DbContext
     {
     }
 
+    public virtual DbSet<ActiveAccount> ActiveAccounts { get; set; }
+
     public virtual DbSet<Folder> Folders { get; set; }
 
     public virtual DbSet<StudySet> StudySets { get; set; }
@@ -25,10 +27,31 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<WordType> WordTypes { get; set; }
 
-   
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<ActiveAccount>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__active_a__3213E83FF3BE469C");
+
+            entity.ToTable("active_account");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Active).HasColumnName("active");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.Expired)
+                .HasColumnType("datetime")
+                .HasColumnName("expired");
+            entity.Property(e => e.SecurityCode)
+                .HasMaxLength(200)
+                .IsUnicode(false)
+                .HasColumnName("security_code");
+        });
+
         modelBuilder.Entity<Folder>(entity =>
         {
             entity.HasKey(e => e.FolderId).HasName("PK__folder__C2FABF930A33C75F");
@@ -81,7 +104,7 @@ public partial class DatabaseContext : DbContext
                 .HasColumnName("email");
             entity.Property(e => e.Fullname)
                 .HasMaxLength(100)
-                .IsUnicode(false)
+                .IsUnicode(true)
                 .HasColumnName("fullname");
             entity.Property(e => e.Gender).HasColumnName("gender");
             entity.Property(e => e.Password)
